@@ -33,6 +33,7 @@ export class MyTableComponent implements OnInit, OnChanges {
   delete(i:number) {
     console.log("id: " + this.products[i].id);
     this.products.splice(i, 1);
+    this.rows -=1;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -40,8 +41,7 @@ export class MyTableComponent implements OnInit, OnChanges {
     if (changes.rows) {
       this.products = PRODUCTS.slice(0, changes.rows.currentValue);
     }
-  }
-  
+  }  
   
   isBgDanger(i: number) {
     if (this.products[i].price > 500) {
@@ -90,5 +90,4 @@ export class MyTableComponent implements OnInit, OnChanges {
     this.products = PRODUCTS.filter(obj => obj.category == 3);
     return (this.choice = 3);
   }
-
 }
